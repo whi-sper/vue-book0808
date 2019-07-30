@@ -1,0 +1,28 @@
+$ratio: 375/10;
+@function px2rem($px) {
+  @return $px/$ratio +rem;
+}
+@mixin center{
+  //flex布局进行水平垂直居中
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin left{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+@mixin right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@mixin ellipsis{
+   //省略显示
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
