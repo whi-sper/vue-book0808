@@ -64,7 +64,7 @@
     position: absolute;
     bottom: px2rem(48);
     left: 0;
-    z-index: 101;
+    z-index: 190;
     /*加入字体设置面板*/
     display: flex;
     flex-direction: column;
