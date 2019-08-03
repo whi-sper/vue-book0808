@@ -2,6 +2,32 @@ import { mapGetters, mapActions } from 'vuex'
 import { themeList, addCss, removeAllCss, getRaedTimeByMinute } from './book'
 import { saveLocation, getBookmark } from './localStorage'
 
+export const storeHomeMixin = {
+  computed: {
+    ...mapGetters([
+      'offsetY',
+      'hotSearchOffsetY',
+      'flapCardVisible'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'setOffsetY',
+      'setHotSearchOffsetY',
+      'setFlapCardVisible'
+    ]),
+    showBookDetail (book) {
+      this.$router.push({
+        path: '/store/detail',
+        query: {
+          fileName: book.fileName,
+          category: book.category
+        }
+      })
+    }
+  }
+}
+
 export const ebookMixin = {
   computed: {
     ...mapGetters([
@@ -28,6 +54,9 @@ export const ebookMixin = {
     ]),
     themeList () {
       return themeList(this)
+    },
+    getSectionName () {
+      return this.section ? this.navigation[this.section].label : ''
     }
   },
   methods: {
@@ -92,6 +121,18 @@ export const ebookMixin = {
           }
         } else {
           this.setIsBookmark(false)
+        }
+        // 分页处理
+        if (this.pagelist) {
+          const totalPage = this.pagelist.length
+          const currentPage = currentLocation.start.location
+          if (currentPage && currentPage > 0) {
+            this.setPaginate(currentPage + '/' + totalPage)
+          } else {
+            this.setPaginate('')
+          }
+        } else {
+          this.setPaginate('')
         }
       }
     },

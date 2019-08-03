@@ -1,10 +1,12 @@
 <!--阅读器入口文件-->
 <template>
   <div class="ebook" ref="ebook">
+    <ebook-header></ebook-header>
     <ebook-title></ebook-title>
     <ebook-reader></ebook-reader>
     <ebook-menu></ebook-menu>
     <ebook-bookmark></ebook-bookmark>
+    <ebook-footer></ebook-footer>
   </div>
 </template>
 
@@ -13,6 +15,8 @@
   import EbookTitle from '../../components/ebook/EbookTitle.vue'
   import EbookMenu from '../../components/ebook/EbookMenu.vue'
   import EbookBookmark from '../../components/ebook/EbookBookmark.vue'
+  import EbookHeader from '../../components/ebook/EbookHeader.vue'
+  import EbookFooter from '../../components/ebook/EbookFooter.vue'
   import { getReadTime, saveReadTime } from '../../utils/localStorage'
   import { ebookMixin } from '../../utils/mixin'
 
@@ -22,7 +26,9 @@
       EbookReader,
       EbookTitle,
       EbookMenu,
-      EbookBookmark
+      EbookBookmark,
+      EbookHeader,
+      EbookFooter
     },
     watch: {
       offsetY (v) {

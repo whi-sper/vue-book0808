@@ -27,7 +27,7 @@
     methods: {
       // 返回图标点击事件
       back () {
-        console.log('back')
+        this.$router.go(-1)
       }
     }
   }

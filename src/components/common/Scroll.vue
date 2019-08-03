@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import { realPx } from '@/utils/utils'
+  import { realPx } from '../../utils/utils'
 
   export default {
     props: {
@@ -32,21 +32,21 @@
       }
     },
     methods: {
-      handleScroll(e) {
+      handleScroll (e) {
         const offsetY = e.target.scrollTop || window.pageYOffset || document.body.scrollTop
         this.$emit('onScroll', offsetY)
       },
-      scrollTo(x, y) {
+      scrollTo (x, y) {
         this.$refs.scrollWrapper.scrollTo(x, y)
       },
-      refresh() {
+      refresh () {
         if (this.$refs.scrollWrapper) {
           this.$refs.scrollWrapper.style.height = window.innerHeight - realPx(this.top) - realPx(this.bottom) + 'px'
           this.$refs.scrollWrapper.addEventListener('scroll', this.handleScroll)
         }
       }
     },
-    mounted() {
+    mounted () {
       this.refresh()
       this.$nextTick(() => {
         setTimeout(() => {
@@ -67,7 +67,7 @@
     overflow-x: hidden;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar{
+    &::-webkit-scrollbar {
       display: none;
     }
     &.no-scroll {

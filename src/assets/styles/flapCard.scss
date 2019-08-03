@@ -9,6 +9,7 @@ $color-pink-transparent: rgba(255, 102, 159, .5);
 $color-blue-transparent: rgba(74, 171, 255, .5);
 $color-yellow-transparent: rgba(255, 198, 102, .5);
 
+// 一个大数组
 $moves: (
         (startX: 0, startY: 0, endX: 0, endY: 55, width: 6, height: 6, background: $color-green),
         (startX: 0, startY: 0, endX: 15, endY: 60, width: 4, height: 4, background: $color-pink-transparent),
@@ -32,10 +33,11 @@ $moves: (
 
 @mixin move($index) {
   $item: nth($moves, $index);
+  // 防止动画名称重复
   $keyframesName: "move" + $index;
   $animationTime: .75s;
   $animationType: linear;
-  $animationIterator: 1;
+  $animationIterator: 1; // 运动次数
   $width: map-get($item, width);
   $height: map-get($item, height);
   $backgroud: map-get($item, background);
