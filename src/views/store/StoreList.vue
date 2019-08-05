@@ -8,8 +8,12 @@
             :top="42"
             @onScroll="onScroll"
             ref="scroll">
-      <featured :data="value" :titleText="titleText ? titleText : getCategoryText(key)" :btnText="''" v-for="(value, key, index) in list"
-                :key="index"></featured>
+      <featured :data="value"
+                :titleText="titleText ? titleText : getCategoryText(key)"
+                :btnText="''"
+                v-for="(value, key, index) in list"
+                :key="index">
+      </featured>
     </scroll>
   </div>
 </template>
@@ -29,14 +33,14 @@
       Featured
     },
     computed: {
-      title() {
+      title () {
         if (this.list) {
           return this.total && this.$t('home.allBook').replace('$1', this.totalNumber)
         } else {
           return null
         }
       },
-      totalNumber() {
+      totalNumber () {
         let num = 0
         Object.keys(this.list).forEach(key => {
           num += this.list[key].length
@@ -44,27 +48,27 @@
         return num
       }
     },
-    data() {
+    data () {
       return {
         list: null,
         total: null
       }
     },
     methods: {
-      getCategoryText(key) {
+      getCategoryText (key) {
         return `${categoryText(categoryList[key], this)}(${this.list[key].length})`
       },
-      back() {
+      back () {
         this.$router.go(-1)
       },
-      onScroll(offsetY) {
+      onScroll (offsetY) {
         if (offsetY > realPx(42)) {
           this.$refs.title.showShadow()
         } else {
           this.$refs.title.hideShadow()
         }
       },
-      getList() {
+      getList () {
         list().then(response => {
           this.list = response.data.data
           this.total = response.data.total
@@ -84,7 +88,7 @@
         })
       }
     },
-    created() {
+    created () {
       this.getList()
       this.titleText = this.$route.query.categoryText
     }

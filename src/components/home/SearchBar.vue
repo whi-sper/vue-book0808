@@ -21,7 +21,9 @@
           <input type="text" class="input"
                  :placeholder="$t('home.hint')"
                  v-model="searchText"
-                 @click="showHotSearch">
+                 @click="showHotSearch"
+                 @keyup.13.exact="search">
+          <!--@keyup.13.exact表示只能点击回车-->
         </div>
       </div>
     </div>
@@ -63,6 +65,16 @@
       }
     },
     methods: {
+      search () {
+        this.$router.push(
+          {
+            path: './store/list',
+            query: {
+              keyword: this.searchText
+            }
+          }
+        )
+      },
       showFlapCard () {
         this.setFlapCardVisible(true)
       },
@@ -72,8 +84,12 @@
         } else {
           this.hideShadow()
         }
-        this.hideHotSearch()
-        // this.showTitle()
+        if (this.hotSearchVisible) {
+          this.hideHotSearch()
+        } else {
+          // 这个地方和老师不一样
+          this.$router.push('/store/shelf')
+        }
       },
       showHotSearch () {
         this.hideTitle()

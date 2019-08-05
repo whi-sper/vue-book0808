@@ -1,3 +1,31 @@
+export function gotoBookDetail (vue, book) {
+  vue.$router.push({
+    path: '/store/detail',
+    query: {
+      fileName: book.fileName,
+      category: book.category
+    }
+  })
+}
+
+export function gotoStoreHome (vue) {
+  vue.$router.push({
+    path: '/store/home'
+  })
+}
+
+export function appendAddToShelf (list) {
+  list.push({
+    id: -1,
+    type: 3
+  })
+  return list
+}
+
+export function removeAddFromShelf (list) {
+  return list.filter(item => item.type !== 3)
+}
+
 export const flapCardList = [
   {
     r: 255,
@@ -79,7 +107,8 @@ export const categoryList = {
   'Psychology': 21,
   'Statistics': 22
 }
-export function getCategoryName(id) {
+
+export function getCategoryName (id) {
   switch (id) {
     case 1:
       return 'ComputerScience'
@@ -128,7 +157,7 @@ export function getCategoryName(id) {
   }
 }
 
-export function categoryText(category, vue) {
+export function categoryText (category, vue) {
   switch (category) {
     case 1:
       return vue.$t('category.computerScience')
